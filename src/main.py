@@ -4,7 +4,7 @@ from tkinter import *
 
 
 def toEnter():
-    sistemaLogin["text"] = "Logado"
+    nomeEmpresa["text"] = "Logado"
 
 
 sistemaLogin = Tk()
