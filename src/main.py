@@ -1,19 +1,27 @@
-# -*- coding: utf-8 -*-
+# -- coding: utf-8 --
 
-from tkinter import *
-
-
-def toEnter():
-    nomeEmpresa["text"] = "Logado"
+import time
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
 
 
-sistemaLogin = Tk()
+driver = webdriver.Chrome(
+    executable_path=r'D:\Programas\chromedriver.exe')
 
-nomeEmpresa = Label(sistemaLogin, text="Mercado Eletrônico", font="Tahoma 25")
-nomeEmpresa.place(x=250, y=100)
+driver.get(
+    "http://automationpractice.com/index.php?controller=authentication&back=my-account")
 
-botao_logar = Button(sistemaLogin, width=25, text="Logar", command=toEnter)
-botao_logar.place(x=300, y=400)
 
-sistemaLogin.geometry("800x600+0+0")
-sistemaLogin.mainloop()
+driver.find_element_by_id("email_create").send_keys(
+    "joaovandrade3@gmail.com")
+
+driver.find_element_by_id("SubmitCreate").click()
+time.sleep(10)
+
+driver.find_element_by_id("id_gender1").click()
+
+time.sleep(2)
+
+driver.find_element_by_id("customer_firstname").send_keys('Joao')
+driver.find_element_by_id("customer_lastname").send_keys('Andrade')
+driver.find_element_by_id("passwd").send_keys('123456')
