@@ -2,8 +2,10 @@ from tkinter import *
 
 
 def toEnter():
-    titulo['text'] = ""
+    titulo['text'] = " "
     subtitulo['text'] = "Logado"
+
+    print("Nome usuário: %s" % primeiroNomeUser.get())
 
 
 sistemaLogin = Tk()
@@ -75,48 +77,47 @@ celular.place(x=650, y=330)
 email = Entry(sistemaLogin)
 email.place(x=100, y=170, width=200)
 
-primeiroNome = Entry(sistemaLogin)
-primeiroNome.place(x=100, y=230)
+primeiroNomeEnter = Entry(sistemaLogin)
+primeiroNomeEnter.place(x=100, y=230)
 
-segundoNome = Entry(sistemaLogin)
-segundoNome.place(x=100, y=290)
+segundoNomeEnter = Entry(sistemaLogin)
+segundoNomeEnter.place(x=100, y=290)
 
-senha = Entry(sistemaLogin, show='*')
-senha.place(x=100, y=350)
+senhaEnter = Entry(sistemaLogin, show='*')
+senhaEnter.place(x=100, y=350)
 
-diaNasc = Entry(sistemaLogin)
-diaNasc.place(x=100, y=390, width=25)
+diaNascEnter = Entry(sistemaLogin)
+diaNascEnter.place(x=100, y=390, width=25)
 
-mesNasc = Entry(sistemaLogin)
-mesNasc.place(x=130, y=390, width=60)
+mesNascEnter = Entry(sistemaLogin)
+mesNascEnter.place(x=130, y=390, width=60)
 
-anoNasc = Entry(sistemaLogin)
-anoNasc.place(x=200, y=390, width=40)
+anoNascEnter = Entry(sistemaLogin)
+anoNascEnter.place(x=200, y=390, width=40)
 
-nomeEmpresa = Entry(sistemaLogin)
-nomeEmpresa.place(x=400, y=170)
+nomeEmpresaEnter = Entry(sistemaLogin)
+nomeEmpresaEnter.place(x=400, y=170)
 
-cidade = Entry(sistemaLogin)
-cidade.place(x=400, y=230)
+cidadeEnter = Entry(sistemaLogin)
+cidadeEnter.place(x=400, y=230)
 
-endUm = Entry(sistemaLogin)
-endUm.place(x=400, y=290, width=160)
+endUmEnter = Entry(sistemaLogin)
+endUmEnter.place(x=400, y=290, width=160)
 
-endDois = Entry(sistemaLogin)
-endDois.place(x=400, y=350, width=160)
+endDoisEnter = Entry(sistemaLogin)
+endDoisEnter.place(x=400, y=350, width=160)
 
+cepEnter = Entry(sistemaLogin)
+cepEnter.place(x=650, y=170)
 
-cep = Entry(sistemaLogin)
-cep.place(x=650, y=170)
+estadoEnter = Entry(sistemaLogin)
+estadoEnter.place(x=650, y=230)
 
-estado = Entry(sistemaLogin)
-estado.place(x=650, y=230)
+telEnter = Entry(sistemaLogin)
+telEnter.place(x=650, y=290)
 
-tel = Entry(sistemaLogin)
-tel.place(x=650, y=290)
-
-cel = Entry(sistemaLogin)
-cel.place(x=650, y=350)
+celEnter = Entry(sistemaLogin)
+celEnter.place(x=650, y=350)
 
 botao_enviar = Button(sistemaLogin, width=25, text="Enviar", command=toEnter)
 botao_enviar.place(x=330, y=450)
