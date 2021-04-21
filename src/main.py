@@ -1,10 +1,17 @@
 # -- coding: utf-8 --
 import time
 import json
+import os
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
 import login
+
+
+#criaForm = os.pathdirname(__file__)
+#ovoArquivo = criaForm+"\\emails.txt"
+
+#recebeNome = login.toRegisterPrimeiroNome()
 
 driver = webdriver.Chrome(executable_path=r'D:\Programas\chromedriver.exe')
 
@@ -17,7 +24,7 @@ driver.find_element_by_id("SubmitCreate").click()
 
 time.sleep(10)
 
-driver.find_element_by_id("id_gender1").click()
+# driver.find_element_by_id("id_gender1").click()
 
 time.sleep(2)
 
