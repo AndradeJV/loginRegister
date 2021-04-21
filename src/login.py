@@ -6,7 +6,7 @@ def toEnter():
 
 
 def toEnterNew():
-    tituloInicial['text'] = "usuario cadastrado"
+    subtitulo['text'] = "usuario cadastrado"
 
 
 def toRegister():
