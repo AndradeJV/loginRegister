@@ -5,6 +5,31 @@ import os
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
+import mysql.connector
+
+conDb = mysql.connector.connect(
+    host='localhost',
+    database='bd_loginregister',
+    user='root',
+    password='CcO21377@')
+
+if conDb.is_connected():
+    dbInfos = conDb.get_server_info()
+    print("Conectado ", dbInfos)
+
+    cursor = conDb.cursor()
+    cursor.execute("select database();")
+
+    recebeDb = cursor.fetchone()
+    print("Conectado ao db ", recebeDb)
+
+"""
+if conDb.is_connected():
+    cursor.close()
+    conDb.close()
+    print("Conexão encerrada")
+"""
+
 # import login
 
 resp = int(input('Novo cadastro (1- Sim, 2-Não)?'))
