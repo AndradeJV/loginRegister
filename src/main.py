@@ -2,10 +2,11 @@
 import time
 import json
 import os
+import mysql.connector
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
-import mysql.connector
+# Conexão com banco de dados local
 
 conDb = mysql.connector.connect(
     host='localhost',
@@ -15,21 +16,21 @@ conDb = mysql.connector.connect(
 
 if conDb.is_connected():
     dbInfos = conDb.get_server_info()
-    print("Conectado ", dbInfos)
 
     cursor = conDb.cursor()
     cursor.execute("select database();")
 
     recebeDb = cursor.fetchone()
-    print("Conectado ao db ", recebeDb)
-
 
 resp = int(input('Novo cadastro (1- Sim, 2-Não)?'))
 
+# Menu de interação com usuario
 
 if resp == 1:
 
     recebeEmail = input('Digite um email:')
+
+    # Verifica se email digitado já esta no DB local
 
     comandoSql = "SELECT * FROM usuario_login WHERE email = %s"
     valores = (recebeEmail,)
@@ -89,6 +90,17 @@ if resp == 1:
         driver.find_element_by_id(
             "submitAccount").send_keys('(22) 2 2222-2222')
 
+        time.sleep(5)
+
+        driver.find_element_by_xpath(
+            "/html/body/div/div[1]/header/div[2]/div/div/nav/div[2]/a").click()
+
+        driver.find_element_by_id("email").send_keys(recebeEmail)
+        driver.find_element_by_id("passwd").send_keys('123456')
+        driver.find_element_by_id("SubmitLogin").click()
+
+        # Armazena dados no DB local para gerar o loop de novos cadastro em sua verificações
+
         comandoSql = "INSERT INTO usuario_login(email, nome, senha) VALUES(%s, %s, %s)"
         valores = (recebeEmail, 'Joao', '123456')
         cursor.execute(comandoSql, valores)
@@ -98,6 +110,8 @@ if resp == 1:
         print("email cadastrado")
 
 elif resp == 2:
+
+    # Busca email no DB local para realizar o login caso já tenha cadastrp
 
     recebeEmail = input('Digite um email:')
 
@@ -110,8 +124,9 @@ elif resp == 2:
 
     driver.find_element_by_id("email").send_keys(recebeEmail)
     driver.find_element_by_id("passwd").send_keys('123456')
-    driver.find_element_by_id(SubmitLogin).click()
+    driver.find_element_by_id("SubmitLogin").click()
 
+# Fecha a conexão com banco de dados
 
 if conDb.is_connected():
     cursor.close()
