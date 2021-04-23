@@ -6,6 +6,15 @@ import mysql.connector
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
+# Campos para fazer a importação do Json
+
+with open('C:/Users/João Andrade/OneDrive/Documentos/loginRegister/src/usuarioCadastro.json') as f:
+    userCadastro = json.load(f)
+
+with open('C:/Users/João Andrade/OneDrive/Documentos/loginRegister/src/usuarioLogin.json') as s:
+    userLogin = json.load(s)
+
+
 # Conexão com banco de dados local
 
 conDb = mysql.connector.connect(
@@ -27,6 +36,10 @@ resp = int(input('Novo cadastro (1- Sim, 2-Não)?'))
 # Menu de interação com usuario
 
 if resp == 1:
+
+    print("Campos a serem preenchidos:")
+    for i in userCadastro:
+        print(i)
 
     recebeEmail = input('Digite um email:')
 
@@ -87,8 +100,6 @@ if resp == 1:
         driver.find_element_by_id("id_state").send_keys('Alabama')
         driver.find_element_by_id("phone").send_keys('(11) 1111-1111')
         driver.find_element_by_id("phone_mobile").send_keys('(22) 2 2222-2222')
-        driver.find_element_by_id(
-            "submitAccount").send_keys('(22) 2 2222-2222')
 
         time.sleep(5)
 
@@ -110,6 +121,11 @@ if resp == 1:
         print("email cadastrado")
 
 elif resp == 2:
+
+    print("Campos a serem preenchidos")
+
+    for j in userLogin:
+        print(j)
 
     # Busca email no DB local para realizar o login caso já tenha cadastrp
 
