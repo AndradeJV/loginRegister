@@ -1,4 +1,7 @@
 # -- coding: utf-8 --
+
+# Importações de bibliotecas conforme suas necessidades
+
 import time
 import json
 import os
@@ -31,7 +34,7 @@ if conDb.is_connected():
 
     recebeDb = cursor.fetchone()
 
-resp = int(input('Novo cadastro (1- Sim, 2-Não)?'))
+resp = int(input('Novo cadastro? 1- Sim 2-Não \nR:'))
 
 # Menu de interação com usuario
 
@@ -71,6 +74,8 @@ if resp == 1:
 
         time.sleep(10)
 
+        # Criação do usuário
+
         driver.find_element_by_id("id_gender1").click()
 
         time.sleep(2)
@@ -106,6 +111,30 @@ if resp == 1:
         driver.find_element_by_xpath(
             "/html/body/div/div[1]/header/div[2]/div/div/nav/div[2]/a").click()
 
+        time.sleep(5)
+
+        driver.find_element_by_id("id_contact").send_keys('Webmaster')
+        driver.find_element_by_id("email").send_keys(recebeEmail)
+        driver.find_element_by_id("id_order").send_keys('Teste')
+        driver.find_element_by_id("message").send_keys('Teste mensagem')
+        driver.find_element_by_id("submitMessage").click()
+
+        time.sleep(5)
+
+        # Ir para página inicial
+
+        driver.find_element_by_xpath(
+            "/html/body/div/div[2]/div/div[3]/div/ul/li/a/span").click()
+
+        time.sleep(5)
+
+        driver.find_element_by_xpath(
+            "/html/body/div/div[1]/header/div[2]/div/div/nav/div[1]/a").click()
+
+        time.sleep(5)
+
+        # Logar com o usuário
+
         driver.find_element_by_id("email").send_keys(recebeEmail)
         driver.find_element_by_id("passwd").send_keys('123456')
         driver.find_element_by_id("SubmitLogin").click()
@@ -118,7 +147,7 @@ if resp == 1:
         conDb.commit()
 
     else:
-        print("email cadastrado")
+        print("email já cadastrado, por favor execute o programa novamente!")
 
 elif resp == 2:
 
@@ -147,4 +176,3 @@ elif resp == 2:
 if conDb.is_connected():
     cursor.close()
     conDb.close()
-    print("Conexão encerrada")
